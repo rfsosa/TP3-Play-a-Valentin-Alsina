@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play a Valentín Alsina</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="header-info">
+      <h1>PLAY A VALENTÍN ALSINA</h1>
+      <span class="tagline">Sinestesia Urbana • Toca los elementos del paisaje</span>
+    </div>
+
+    <div class="controls-container">
+      <button id="btn-play-pause" class="control-btn" aria-label="Reproducir o Pausar">
+        <span id="btn-icon">▶</span>
+        <span id="btn-text">INICIAR</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="canvas-container" id="canvas-container">
+    <div class="stage-wrapper" id="stage-wrapper">
+      <!-- Fondo desaturado en escala de grises -->
+      <img src="img/collage.png" alt="Collage Valentín Alsina" class="base-bg" id="main-image">
+
+      <!-- Hotspots independientes con su recorte a color adentro -->
+      <div class="hotspot" id="spot-puente" data-sound="bandoneon" data-poema="Hierro, pórtico y memoria: el puente sostiene el pulso del barrio.">
+        <div class="spot-color"></div>
+      </div>
+
+      <div class="hotspot" id="spot-colectivo" data-sound="acordeon" data-poema="El 128 corta la niebla: el latido diésel de la rutina obrera.">
+        <div class="spot-color"></div>
+      </div>
+
+      <div class="hotspot" id="spot-abuelos" data-sound="tango" data-poema="Pasos lentos sobre el asfalto gastado: el tango no se olvida.">
+        <div class="spot-color"></div>
+      </div>
+
+      <div class="hotspot" id="spot-jovenes" data-sound="punk" data-poema="Mochilas pesadas, acordes rotos: el punk retumba en las esquinas.">
+        <div class="spot-color"></div>
+      </div>
+
+      <div class="hotspot" id="spot-iglesia" data-sound="campanas" data-poema="Campanadas lejanas entre el humo y los techos de chapa.">
+        <div class="spot-color"></div>
+      </div>
+
+      <div class="hotspot" id="spot-grafitis" data-sound="aerosol" data-poema="Pintura fresca y resistencia: las paredes gritan lo que callamos.">
+        <div class="spot-color"></div>
+      </div>
+
+      <div id="ripple-layer"></div>
+    </div>
+  </main>
+
+  <footer class="footer-bar">
+    <p id="poema-text">Presiona INICIAR y haz clic en los elementos del paisaje...</p>
+  </footer>
+
+  <!-- Audios locales -->
+  <audio id="audio-bandoneon" src="audio/bandoneon.wav" preload="auto"></audio>
+  <audio id="audio-acordeon" src="audio/acordeon.mp3" preload="auto"></audio>
+  <audio id="audio-tango" src="audio/tango.mp3" preload="auto"></audio>
+  <audio id="audio-punk" src="audio/punk.mp3" preload="audio"></audio>
+  <audio id="audio-campanas" src="audio/loros.wav" preload="auto"></audio>
+  <audio id="audio-aerosol" src="audio/electric-noise.wav" preload="auto"></audio>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
