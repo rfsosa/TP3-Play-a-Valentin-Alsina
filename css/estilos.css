@@ -1,0 +1,209 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  background-color: #0f0f11;
+  color: #e0e0e0;
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.top-bar {
+  padding: 10px 24px;
+  background-color: #18181b;
+  border-bottom: 2px solid #27272a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+}
+
+.header-info h1 {
+  font-size: 1.15rem;
+  letter-spacing: 2px;
+  color: #f59e0b;
+}
+
+.tagline {
+  font-size: 0.8rem;
+  color: #71717a;
+}
+
+.control-btn {
+  background-color: #27272a;
+  color: #f59e0b;
+  border: 1px solid #f59e0b;
+  padding: 8px 18px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.control-btn:hover {
+  background-color: #f59e0b;
+  color: #0f0f11;
+}
+
+.control-btn.active {
+  background-color: #d97706;
+  color: #fff;
+  border-color: #d97706;
+}
+
+.canvas-container {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #09090b;
+  position: relative;
+  overflow: hidden;
+}
+
+.stage-wrapper {
+  position: relative;
+  max-width: 90vw;
+  max-height: 78vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.base-bg {
+  max-width: 100%;
+  max-height: 78vh;
+  display: block;
+  object-fit: contain;
+  filter: grayscale(100%) contrast(115%) brightness(90%);
+  transition: filter 0.5s ease;
+}
+
+/* Capa que revela el color */
+
+/* Configuración de cada zona interactiva */
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px dashed rgba(245, 158, 11, 0.4);
+  transition: border-color 0.2s, box-shadow 0.3s;
+}
+
+.hotspot:hover {
+  border-color: rgba(245, 158, 11, 0.9);
+}
+
+/* Recorte interno a color */
+.spot-color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/c-color.png');
+  background-repeat: no-repeat;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* Estado activo: revela el color y resalta con brillo */
+.hotspot.is-active {
+  border: 2px solid #f59e0b;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.7);
+}
+
+.hotspot.is-active .spot-color {
+  opacity: 1;
+}
+
+.canvas-container.paused .hotspot {
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.reveal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Zonas interactivas delimitadas para que no se pisen */
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s, outline 0.2s;
+  border-radius: 4px;
+}
+
+.hotspot:hover {
+  background-color: rgba(245, 158, 11, 0.25);
+  outline: 2px dashed rgba(245, 158, 11, 0.8);
+}
+
+.canvas-container.paused .hotspot {
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Ubicaciones exactas según el collage */
+#spot-puente    { top: 5%;  left: 27%; width: 55%; height: 50%; border-radius: 20px; }
+#spot-colectivo { top: 50%; left: 17%; width: 33%; height: 40%; }
+#spot-abuelos   { top: 54%; left: 43%; width: 14%; height: 40%; }
+#spot-jovenes   { top: 57%; left: 69%; width: 20%; height: 38%; }
+#spot-iglesia   { top: 20%; left: 6%;  width: 20%; height: 45%; }
+#spot-grafitis  { top: 2%;  left: 0%;  width: 25%; height: 30%; }
+
+.ripple {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: rgba(245, 158, 11, 0.8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  animation: expand-ripple 0.6s ease-out forwards;
+  pointer-events: none;
+  z-index: 15;
+}
+
+@keyframes expand-ripple {
+  to {
+    transform: translate(-50%, -50%) scale(12);
+    opacity: 0;
+  }
+}
+
+.footer-bar {
+  padding: 14px 24px;
+  background-color: #18181b;
+  border-top: 2px solid #27272a;
+  text-align: center;
+  min-height: 52px;
+  z-index: 20;
+}
+
+#poema-text {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #fafafa;
+  transition: opacity 0.25s;
+}
